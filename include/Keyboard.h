@@ -45,17 +45,17 @@ class Keyboard {
         ~Keyboard();
         void loadBuffers();
 
-        sf::Vector2f getPosition() { return m_position; };
-        u_char getOctave() { return m_octave; };
-        std::string getWaveType() { return m_waveType; };
-        sf::Sound::Status getSoundStatus(uint index) { return m_notes[index].getStatus(); };
+        sf::Vector2f getPosition();
+        u_char getOctave();
+        std::string getWaveType();
+        sf::Sound::Status getSoundStatus(uint index);
 
-        void setOctave(uint octave) { (octave < 3 || octave > 7) ? /* do nothing */ : m_octave = octave;};
+        void setOctave(uint octave);
         void setWavetype(std::string waveType);
 
-        uint buttonToNoteIndex(sf::Keyboard::Key button) { return m_buttonToNoteIndex.count(button) == 0 ? -1: m_buttonToNoteIndex[button]; };
-        void playSound(uint index) { m_notes[index].play(); };
-        void stopSound(uint index) { m_notes[index].stop(); };
+        uint buttonToNoteIndex(sf::Keyboard::Key button);
+        void playSound(uint index);
+        void stopSound(uint index);
         void draw(sf::RenderWindow &window);
         void highlightKey(uint index);
         void unhighlightKey(uint index);

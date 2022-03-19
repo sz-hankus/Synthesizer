@@ -18,7 +18,9 @@ Keyboard::Keyboard(sf::Vector2f position, sf::Vector2f dimensions, uint octave, 
 }
 
 // DESTRUCTOR
-Keyboard::~Keyboard() {} 
+Keyboard::~Keyboard() {
+	
+} 
 
 // Initializes map 
 void Keyboard::initMap() {
@@ -42,7 +44,7 @@ void Keyboard::initMap() {
 	m_buttonToNoteIndex[sf::Keyboard::Quote] = 17;
 }
 
-// Loads buffers for sf::sound objects (m_notes)
+// Loads buffers for sf::Sound objects (m_notes)
 void Keyboard::loadBuffers() {
     double frequencies[KB_SIZE];
 	std::string waveType = m_waveType;
@@ -56,6 +58,24 @@ void Keyboard::loadBuffers() {
 	}
 }
 
+// GETTERS
+sf::Vector2f Keyboard::getPosition() {
+	return m_position;
+}
+u_char Keyboard::getOctave() {
+	return m_octave;
+}
+std::string Keyboard::getWaveType() {
+	return m_waveType;
+}
+sf::Sound::Status Keyboard::getSoundStatus(uint index) {
+	return m_notes[index].getStatus();
+}
+
+// SETTERS
+void Keyboard::setOctave(uint octave) {
+	(octave < 3 || octave > 7) ? /* do nothing */ : m_octave = octave;
+}
 void Keyboard::setWavetype(std::string waveType) {
 	if (std::find(WAVETYPES.begin(), WAVETYPES.end(), waveType) != WAVETYPES.end()) {
 		m_waveType = waveType;
@@ -122,9 +142,9 @@ void Keyboard::initKeys() {
 	// This is probably the easiest and cleanest way to do this, because it can be manually tweaked
 
 	m_keys[0].setPosition(startPos); // C
-	m_keyLetters[0].setPosition(startPos + sf::Vector2f(0.15*unit, 2*unit));
+	m_keyLetters[0].setPosition( startPos + sf::Vector2f(0.15*unit, 2*unit));
 
-	m_keys[1].setPosition( startPos+sf::Vector2f(0.75*unit, 0.0)); // C#
+	m_keys[1].setPosition( startPos + sf::Vector2f(0.75*unit, 0.0)); // C#
 	m_keyLetters[1].setPosition(startPos + sf::Vector2f(0.90*unit, 1*unit));
 
 	m_keys[2].setPosition( m_keys[0].getPosition() + sf::Vector2f(unit, 0.0)); // D
@@ -174,6 +194,19 @@ void Keyboard::initKeys() {
 
 	m_keys[17].setPosition( m_keys[16].getPosition() + sf::Vector2f(unit, 0.0)); // F
 	m_keyLetters[17].setPosition( m_keyLetters[16].getPosition() + sf::Vector2f(unit, 0.0)); 
+}
+
+// Returns index corresponding to (physical) button using m_buttonToIndex map
+uint Keyboard::buttonToNoteIndex(sf::Keyboard::Key button) {
+	return m_buttonToNoteIndex.count(button) == 0 ? -1: m_buttonToNoteIndex[button];
+}
+
+void Keyboard::playSound(uint index) {
+	m_notes[index].play();
+}
+
+void Keyboard::stopSound(uint index) {
+	m_notes[index].stop();
 }
 
 void Keyboard::draw(sf::RenderWindow &window) {

@@ -5,6 +5,7 @@
 #include "Keyboard.h"
 #include "OctaveSelector.h"
 #include "DropdownMenu.h"
+#include "Button.h"
 
 const uint SCREEN_WIDTH = sf::VideoMode::getDesktopMode().width;
 const uint SCREEN_HEIGHT = sf::VideoMode::getDesktopMode().height;
@@ -25,12 +26,16 @@ int main() {
 	float unit = WINDOW_WIDTH/13.0;
 	float keyboardWidth = unit*11.0;
 	float keyboardHeight = unit*2.5;
+
 	Keyboard keyboard(sf::Vector2f(unit,1.5*unit), sf::Vector2f(keyboardWidth,keyboardHeight), 5, "Sine");
 	
 	OctaveSelector selector(sf::Vector2f(1.5*unit,0.3*unit), sf::Vector2f(unit*10.0, unit), keyboard.getOctave());
 
 	std::vector <std::string> waveTypes = {"Sine", "Square", "Sawtooth"}; 
 	DropdownMenu waveTypeMenu(sf::Vector2f(0.15*unit, 0.4*unit), sf::Vector2f(1.2*unit, 0.4*unit), waveTypes);
+
+	Button leftButton(sf::Vector2f( 11.75*unit, 0.4*unit), sf::Vector2f(0.4*unit, 0.4*unit), "assets/arrowLeft.png");
+	Button rightButton(sf::Vector2f( 12.35*unit, 0.4*unit), sf::Vector2f(0.4*unit, 0.4*unit), "assets/arrowRight.png");
 
 	while(window.isOpen()) {
 		sf::Event event;
@@ -47,6 +52,8 @@ int main() {
 					keyboard.setOctave(oct-1);
 					keyboard.loadBuffers();
 					selector.setSelectorOct(oct-1);
+					// Highlight the left button (the one in the interface)
+					leftButton.highlight();
 				} 
 				else if(event.key.code == sf::Keyboard::X) {
 					// Shift the whole keyboard up an octave
@@ -54,9 +61,11 @@ int main() {
 					keyboard.setOctave(oct+1);
 					keyboard.loadBuffers();
 					selector.setSelectorOct(oct+1);
+					// Highlight the right button (the one in the interface)
+					rightButton.highlight();
 				}
 				else {
-					// Play note corresponding to a key (button)
+					// Play note corresponding to a key (button on the keyboard)
 					uint noteIndex = keyboard.buttonToNoteIndex(event.key.code);
 					if( noteIndex != -1 && keyboard.getSoundStatus(noteIndex) != sf::Sound::Playing) {
 						keyboard.playSound(noteIndex);
@@ -69,11 +78,19 @@ int main() {
 
 			// HANDLING KEY RELEASES
 			if (event.type == sf::Event::KeyReleased) {
-				uint noteIndex = keyboard.buttonToNoteIndex(event.key.code);
-				if(noteIndex != -1) {
-					keyboard.stopSound(noteIndex);
-					keyboard.unhighlightKey(noteIndex);
-					selector.unHighlightKey((keyboard.getOctave()-3)*12 + noteIndex); // unhighlight on the selector too
+				if(event.key.code == sf::Keyboard::Z) {
+					leftButton.unhighlight();
+				}
+				else if(event.key.code == sf::Keyboard::X) {
+					rightButton.unhighlight();
+				}
+				else {
+					uint noteIndex = keyboard.buttonToNoteIndex(event.key.code);
+					if(noteIndex != -1) {
+						keyboard.stopSound(noteIndex);
+						keyboard.unhighlightKey(noteIndex);
+						selector.unHighlightKey((keyboard.getOctave()-3)*12 + noteIndex); // unhighlight on the selector too
+					}
 				}
 			}
 
@@ -86,11 +103,13 @@ int main() {
 				}
 			}
 			
-			// DRAWING AND DISPLAYING EVERYTHING
+			// CLEARING, DRAWING AND DISPLAYING EVERYTHING
 			window.clear(sf::Color::White);
-			keyboard.draw(window); // draw keyboard in the current window
-			selector.draw(window); // draw octave selector 
-			waveTypeMenu.draw(window); // draw wave type menu
+			keyboard.draw(window);
+			selector.draw(window);
+			waveTypeMenu.draw(window);
+			leftButton.draw(window);
+			rightButton.draw(window);
 			window.display();
         }
 	}
