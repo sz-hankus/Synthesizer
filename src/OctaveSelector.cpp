@@ -1,4 +1,4 @@
-#include "OctaveSelector.h"
+#include "../include/OctaveSelector.h"
 
 const uint KB_SIZE = 12; // amount of keys in one small keyboard (there will be 5 of them displayed plus a part of one keyboard(from C to F))
 const uint TOTAL_KEYS = KB_SIZE*OCTAVES + 6;

@@ -2,7 +2,7 @@
 #define BUTTON_H
 
 #include <SFML/Graphics.hpp>
-#include "RoundedRectangle.h"
+#include "../src/RoundedRectangle.h"
 #include "string"
 
 // Class used for the octave switching buttons (left and right arrows)

@@ -1,5 +1,5 @@
-#include "Button.h"
 #include <iostream>
+#include "../include/Button.h"
 
 Button::Button(sf::Vector2f position, sf::Vector2f dimensions, std::string iconTexturePath) {
     m_field.setPosition(position);

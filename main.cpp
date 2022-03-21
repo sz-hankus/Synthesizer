@@ -2,10 +2,10 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include <iostream>
-#include "Keyboard.h"
-#include "OctaveSelector.h"
-#include "DropdownMenu.h"
-#include "Button.h"
+#include "include/Keyboard.h"
+#include "include/OctaveSelector.h"
+#include "include/DropdownMenu.h"
+#include "include/Button.h"
 
 const uint SCREEN_WIDTH = sf::VideoMode::getDesktopMode().width;
 const uint SCREEN_HEIGHT = sf::VideoMode::getDesktopMode().height;

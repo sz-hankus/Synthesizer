@@ -1,5 +1,5 @@
-#include "RoundedRectangle.h"
 #include <cmath>
+#include "../src/RoundedRectangle.h"
 
 RoundedRectangleShape::RoundedRectangleShape(const sf::Vector2f size, float radius, unsigned int cornerPointCount) {
     m_size = size;

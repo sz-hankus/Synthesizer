@@ -1,4 +1,4 @@
-#include "SoundLib.h"
+#include "../src/SoundLib.h"
 
 sf::SoundBuffer getFilledBuffer(double frequency, std::string waveType, uint amplitude_scaling) {
 	// This is neccessary if we want the sound to loop and be smooth

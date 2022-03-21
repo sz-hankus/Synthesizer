@@ -3,7 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
-#include "RoundedRectangle.h"
+#include "../src/RoundedRectangle.h"
 
 const uint OCTAVES = 5;
 

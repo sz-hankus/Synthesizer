@@ -1,5 +1,5 @@
-#include "Keyboard.h"
-#include "SoundLib.h"
+#include "../include/Keyboard.h"
+#include "../src/SoundLib.h"
 
 
 // INITIALIZER
