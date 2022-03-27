@@ -5,14 +5,14 @@
             "name": "C/C++: clang++ build and debug active file",
             "type": "lldb",
             "request": "launch",
-            "program": "${fileDirname}/${fileBasenameNoExtension}",
+            "program": "${workspaceFolder}/Synthesizer",
             "args": [],
             "stopAtEntry": false,
-            "cwd": "${fileDirname}",
+            "cwd": "${workspaceFolder}",
             "environment": [],
             "externalConsole": false,
             "MIMode": "lldb",
-            "preLaunchTask": "C/C++: clang++ build active file"
+            "preLaunchTask": "C/C++: make"
         }
     ]
 }
