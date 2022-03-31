@@ -9,14 +9,12 @@ Button::Button(sf::Vector2f position, sf::Vector2f dimensions, std::string iconT
     m_field.setOutlineColor(sf::Color::Black);
 
     if (!m_iconTexture.loadFromFile(iconTexturePath)) {
-        std::cerr << "Could not load button texture from path: " << iconTexturePath;
+        std::cerr << "Could not load button texture from path: " << iconTexturePath << std::endl;
     }
     m_iconSprite.setPosition(position);
     m_iconSprite.setTexture(m_iconTexture);
     float scaling = dimensions.x/m_iconTexture.getSize().x;
     m_iconSprite.setScale(sf::Vector2f(scaling, scaling));
-
-
 }
 
 void Button::highlight() {

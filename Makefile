@@ -1,4 +1,4 @@
-OOT := ${CURDIR}
+OOT := $(CURDIR)
 SFML := /opt/homebrew/Cellar/sfml/2.5.1_1
 
 CXX := g++
