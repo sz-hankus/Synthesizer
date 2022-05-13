@@ -12,7 +12,7 @@ Keyboard::Keyboard(sf::Vector2f position, sf::Vector2f dimensions, uint octave, 
 	loadBuffers();
 	initKeys();
 	// Load the font from file
-	if( !m_letterFont.loadFromFile("/Users/szymon/Desktop/Synthesizer/assets/VeraMono.ttf") ) {
+	if( !m_letterFont.loadFromFile("assets/VeraMono.ttf") ) {
 		std::cerr << "Error loading font from file." <<  std::endl;
 	}
 }
@@ -197,7 +197,7 @@ void Keyboard::initKeys() {
 }
 
 // Returns index corresponding to (physical) button using m_buttonToIndex map
-uint Keyboard::buttonToNoteIndex(sf::Keyboard::Key button) {
+int Keyboard::buttonToNoteIndex(sf::Keyboard::Key button) {
 	return m_buttonToNoteIndex.count(button) == 0 ? -1: m_buttonToNoteIndex[button];
 }
 
