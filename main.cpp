@@ -66,7 +66,7 @@ int main() {
 				}
 				else {
 					// Play note corresponding to a key (button on the keyboard)
-					uint noteIndex = keyboard.buttonToNoteIndex(event.key.code);
+					int noteIndex = keyboard.buttonToNoteIndex(event.key.code);
 					if( noteIndex != -1 && keyboard.getSoundStatus(noteIndex) != sf::Sound::Playing) {
 						keyboard.playSound(noteIndex);
 						keyboard.highlightKey(noteIndex);
@@ -85,7 +85,7 @@ int main() {
 					rightButton.unhighlight();
 				}
 				else {
-					uint noteIndex = keyboard.buttonToNoteIndex(event.key.code);
+					int noteIndex = keyboard.buttonToNoteIndex(event.key.code);
 					if(noteIndex != -1) {
 						keyboard.stopSound(noteIndex);
 						keyboard.unhighlightKey(noteIndex);
@@ -97,8 +97,8 @@ int main() {
 			// HANDLE MOUSE EVENTS
 			if (event.type == sf::Event::MouseButtonPressed || event.type == sf::Event::MouseMoved) {
 				waveTypeMenu.handleMouseEvent(event);
-				if (keyboard.getWaveType() != waveTypeMenu.getChosenItem()) {
-					keyboard.setWavetype(waveTypeMenu.getChosenItem());
+				if (keyboard.getWaveType() != waveTypeMenu.getChosenString()) {
+					keyboard.setWavetype(waveTypeMenu.getChosenString());
 					keyboard.loadBuffers();
 				}
 			}

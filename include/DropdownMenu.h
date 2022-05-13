@@ -34,7 +34,7 @@ class DropdownMenu {
         void fold();
         bool isExtended();
 
-        std::string getChosenItem();
+        std::string getChosenString();
         int indexOf(std::string item);
         void highlightField(uint index);
         void unHighlightField(uint index);

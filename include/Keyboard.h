@@ -53,7 +53,7 @@ class Keyboard {
         void setOctave(uint octave);
         void setWavetype(std::string waveType);
 
-        uint buttonToNoteIndex(sf::Keyboard::Key button);
+        int buttonToNoteIndex(sf::Keyboard::Key button);
         void playSound(uint index);
         void stopSound(uint index);
         void draw(sf::RenderWindow &window);
