@@ -1,5 +1,5 @@
-OOT := $(CURDIR)
-SFML := /opt/homebrew/Cellar/sfml/2.5.1_1
+ROOT := $(CURDIR)
+SFML := SFML
 
 CXX := g++
 CPPFLAGS := -std=c++17 -g -Wall
@@ -37,4 +37,4 @@ run: all
 	./$(PROGRAM)
 
 clean:
-	rm -f *.o src/*.o $(PROGRAM)
+	rm -f *.o $(PROGRAM)
