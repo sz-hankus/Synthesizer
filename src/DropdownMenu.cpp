@@ -23,7 +23,8 @@ DropdownMenu::DropdownMenu(sf::Vector2f position, sf::Vector2f fieldDimensions, 
 
     // init arrow down sprite
     m_arrowDown.setTexture(m_arrowDown_texture);
-    m_arrowDown.setScale(sf::Vector2f(0.3,0.3));
+    float arr_scale = unit / m_arrowDown_texture.getSize().x; // scaling factor
+    m_arrowDown.setScale(sf::Vector2f(arr_scale, arr_scale));
     m_arrowDown.setPosition(position.x + 2*unit, position.y);
 
     // init all the items in the menu
@@ -41,11 +42,14 @@ DropdownMenu::DropdownMenu(sf::Vector2f position, sf::Vector2f fieldDimensions, 
         m_items[i].setFillColor(sf::Color(237, 237, 236));
         m_items[i].setCharacterSize(0.4*unit);
     }
-     // init check mark sprite (when menu is extended)
+
+    // init check mark sprite (when menu is extended)
     m_checkMark.setTexture(m_checkMark_texture);
-    m_checkMark.setScale(sf::Vector2f(0.2,0.2));
+    float check_scale = unit / m_checkMark_texture.getSize().x; //scaling factor
+    m_checkMark.setScale(sf::Vector2f(0.6 * check_scale, 0.6 * check_scale)); 
     int indexOfChosen = indexOf(items[0]);
-    m_checkMark.setPosition(position.x, position.y + (indexOfChosen * unit) + 0.2*unit);
+    m_checkMark.setPosition(position.x,
+                            position.y + (indexOfChosen * unit) + 0.2*unit);
 
     // init background (when extended)
     float radius = 0.3*unit;
