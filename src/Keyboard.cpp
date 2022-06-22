@@ -22,7 +22,7 @@ Keyboard::~Keyboard() {
 	
 } 
 
-// Initializes map 
+// Initializes button to index map 
 void Keyboard::initMap() {
     m_buttonToNoteIndex[sf::Keyboard::A] = 0;
 	m_buttonToNoteIndex[sf::Keyboard::W] = 1;

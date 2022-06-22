@@ -52,6 +52,7 @@ int main() {
 					keyboard.setOctave(oct-1);
 					keyboard.loadBuffers();
 					selector.setSelectorOct(oct-1);
+					selector.unHighlightAll();
 					// Highlight the left button (the one in the interface)
 					leftButton.highlight();
 				} 
@@ -61,6 +62,7 @@ int main() {
 					keyboard.setOctave(oct+1);
 					keyboard.loadBuffers();
 					selector.setSelectorOct(oct+1);
+					selector.unHighlightAll();
 					// Highlight the right button (the one in the interface)
 					rightButton.highlight();
 				}

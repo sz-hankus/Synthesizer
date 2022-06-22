@@ -132,6 +132,11 @@ void OctaveSelector::unHighlightKey(uint index) {
 		m_keys[index].setFillColor(sf::Color::Black);
 }
 
+void OctaveSelector::unHighlightAll() {
+    for (int index = 0; index < TOTAL_KEYS; index++)
+        unHighlightKey(index);
+}
+
 void OctaveSelector::draw(sf::RenderWindow &window) {
     for (int i = 0; i < TOTAL_KEYS; i++) {
         if (isKeyWhite_(i))

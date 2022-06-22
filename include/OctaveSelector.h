@@ -26,6 +26,7 @@ class OctaveSelector {
         void draw(sf::RenderWindow &window);
         void highlightKey(uint index);
         void unHighlightKey(uint index);
+        void unHighlightAll();
 };
 
 #endif
